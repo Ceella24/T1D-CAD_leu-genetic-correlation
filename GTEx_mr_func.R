@@ -4,20 +4,12 @@ library(dplyr)
 library(xlsx)
 library(RadialMR)
 
-#ao <- available_outcomes()
-#ivw_rad <- ivw_radial(H_data)
-#egger_rad <- egger_radial(H_data)
-
-#H_data <- subset(H_data, !(SNP %in% ivw_rad$outliers$SNP)) #(| SNP %in% egger_rad$outliers$SNP))
-
 mr_func <- function(name){
   
   require(MRInstruments)
   require(TwoSampleMR)
   require(dplyr)
-  require(xlsx)
-  require(RadialMR)
-  
+  require(xlsx) 
   
   exposure_data <- read_exposure_data(filename = paste0("~/Downloads/eQTL/010724/GTEx/sumstats/", name, "_GTEx_eqtl.tsv"), 
                                       clump = F, sep = "\t", snp_col = "SNP.Id", beta_col = "pos_beta", se_col = "slope_se",
@@ -25,7 +17,8 @@ mr_func <- function(name){
                                       other_allele_col = "other_allele", pval_col = "pval_nominal", 
                                       gene_col = "Gene.Symbol", phenotype_col = "Gene.Symbol", id_col = "Tissue"
   )
-  #exposure_data <- clump_data(dat = exposure_data, clump_r2 = 0.1)
+  #clumping
+  exposure_data <- clump_data(dat = exposure_data, clump_r2 = 0.1)
   
   
   #t1d
@@ -35,7 +28,8 @@ mr_func <- function(name){
   H_data <- harmonise_data(exposure_dat = exposure_data, outcome_dat = outcome_data)
 
   mr_results <- mr(H_data, method_list = c("mr_ivw_mre", "mr_weighted_median", "mr_egger_regression"))
-  #mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
+  #one snp mr
+  mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
   odds_ratio <- generate_odds_ratios(mr_results)
   plei <- mr_pleiotropy_test(H_data)
   heter <- mr_heterogeneity(H_data)
@@ -57,7 +51,8 @@ mr_func <- function(name){
   H_data <- harmonise_data(exposure_dat = exposure_data, outcome_dat = outcome_data)
 
   mr_results <- mr(H_data, method_list = c("mr_ivw_mre", "mr_weighted_median", "mr_egger_regression"))
-  #mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
+  #one snp mr
+  mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
   odds_ratio <- generate_odds_ratios(mr_results)
   plei <- mr_pleiotropy_test(H_data)
   heter <- mr_heterogeneity(H_data)
@@ -79,7 +74,8 @@ mr_func <- function(name){
   H_data <- harmonise_data(exposure_dat = exposure_data, outcome_dat = outcome_data)
 
   mr_results <- mr(H_data, method_list = c("mr_ivw_mre", "mr_weighted_median", "mr_egger_regression"))
-  #mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
+  #one snp mr
+  mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
   odds_ratio <- generate_odds_ratios(mr_results)
   plei <- mr_pleiotropy_test(H_data)
   heter <- mr_heterogeneity(H_data)
@@ -101,7 +97,8 @@ mr_func <- function(name){
   H_data <- harmonise_data(exposure_dat = exposure_data, outcome_dat = outcome_data)
 
   mr_results <- mr(H_data, method_list = c("mr_ivw_mre", "mr_weighted_median", "mr_egger_regression"))
-  #mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
+  #one snp mr
+  mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
   odds_ratio <- generate_odds_ratios(mr_results)
   plei <- mr_pleiotropy_test(H_data)
   heter <- mr_heterogeneity(H_data)
@@ -123,7 +120,8 @@ mr_func <- function(name){
   H_data <- harmonise_data(exposure_dat = exposure_data, outcome_dat = outcome_data)
 
   mr_results <- mr(H_data, method_list = c("mr_ivw_mre", "mr_weighted_median", "mr_egger_regression"))
-  #mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
+  #one snp mr
+  mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
   odds_ratio <- generate_odds_ratios(mr_results)
   plei <- mr_pleiotropy_test(H_data)
   heter <- mr_heterogeneity(H_data)
@@ -145,7 +143,8 @@ mr_func <- function(name){
   H_data <- harmonise_data(exposure_dat = exposure_data, outcome_dat = outcome_data)
 
   mr_results <- mr(H_data, method_list = c("mr_ivw_mre", "mr_weighted_median", "mr_egger_regression"))
-  #mr_results <- mr(H_data, method_list =c("mr_wald_ratio"))
+  #one snp mr
+  mr_results <- mr(H_data, method_list =c("mr_wald_ratio"))
   odds_ratio <- generate_odds_ratios(mr_results)
   plei <- mr_pleiotropy_test(H_data)
   heter <- mr_heterogeneity(H_data)
@@ -167,7 +166,8 @@ mr_func <- function(name){
   H_data <- harmonise_data(exposure_dat = exposure_data, outcome_dat = outcome_data)
 
   mr_results <- mr(H_data, method_list = c("mr_ivw_mre", "mr_weighted_median", "mr_egger_regression"))
-  #mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
+  #one snp mr
+  mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
   odds_ratio <- generate_odds_ratios(mr_results)
   plei <- mr_pleiotropy_test(H_data)
   heter <- mr_heterogeneity(H_data)
@@ -185,7 +185,8 @@ mr_func <- function(name){
   H_data <- harmonise_data(exposure_dat = exposure_data, outcome_dat = outcome_data)
 
   mr_results <- mr(H_data, method_list = c("mr_ivw_mre", "mr_weighted_median", "mr_egger_regression"))
-  #mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
+  #one snp mr
+  mr_results <- mr(H_data, method_list = c("mr_wald_ratio"))
   odds_ratio <- generate_odds_ratios(mr_results)
   plei <- mr_pleiotropy_test(H_data)
   heter <- mr_heterogeneity(H_data)
@@ -196,14 +197,17 @@ mr_func <- function(name){
   write.xlsx(H_data, file = filepath, sheetName = "H_data", append = TRUE, row.names = FALSE)
 }
 
-#"SH2B3_LCL", "CTSH_LCL" - run unclumped as well
+gene_name <- c("IL2RA_sp", "MORF4L1_LCL", "SMAD3_subadi", "CTSH_wb", 
+               "CXCL12_pan", "IKZF4_LCL", "CTRB1_pan", "BAK1_pan", 
+               "BAK1_wb", "CTRB2_pan", "SH2B3_wb", "SUOX_pan", 
+               "SUOX_wb", "CFDP1_wb", "CFDP1_pan", "CFDP1_LCL", 
+               "CFDP1_increase_LCL""CFDP1_increase_pan", "CFDP1_wb",
+               "SH2B3_LCL", "CTSH_LCL", "MORF4L1_pan", "MORF4L1_wb", 
+               "SMAD3_sp", "CLEC16A_wb", "IL2RA_pan", "CTSH_pan", 
+               "IFIH1_pan", "IFIH1_wb", "HORMAD2_subadi", "PTPN22_wb", 
+               "TCP11_LCL", "TCP11_sp", "BACH2_pan", "PTPN22_pan", 
+               "SH2B3_pan", "IKZF4_pan")
 
-# "IL2RA_sp", "MORF4L1_LCL", "SMAD3_subadi", "CTSH_wb", "CXCL12_pan", "IKZF4_LCL", "CTRB1_pan",
-# "BAK1_pan", "BAK1_wb", "CTRB2_pan", "SH2B3_wb", "SUOX_pan", "SUOX_wb", "CFDP1_wb", "CFDP1_pan", 
-#"CFDP1_LCL", "CFDP1_increase_LCL"
-gene_name <- c("CFDP1_increase_pan") #, "CFDP1_wb")
-#"MORF4L1_pan", "MORF4L1_wb", "SMAD3_sp", "CLEC16A_wb", "IL2RA_pan", "CTSH_pan", "IFIH1_pan", "IFIH1_wb",    
-#"HORMAD2_subadi", "PTPN22_wb", "TCP11_LCL", "TCP11_sp", "BACH2_pan", "PTPN22_pan", "SH2B3_pan", "IKZF4_pan",  
 for (i in 1:length(gene_name)) {
   mr_func(gene_name[i])
 }
