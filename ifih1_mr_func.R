@@ -19,9 +19,6 @@ ifih1_only <- read_exposure_data(
                   pos_col = "base_pair_location"
  )
 
-#method_list_5 <- c("mr_ivw", "mr_ivw_fe", "mr_ivw_mre", "mr_simple_median", "mr_weighted_median","mr_weighted_mode","mr_egger_regression", "mr_two_sample_ml")
-
-
 mr_func <- function(outcome_code, shorthand) {
   
   require(MRInstruments)
