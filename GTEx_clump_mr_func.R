@@ -4,11 +4,14 @@ library(dplyr)
 library(xlsx)
 library(RadialMR)
 
-#ao <- available_outcomes()
-#ivw_rad <- ivw_radial(H_data)
-#egger_rad <- egger_radial(H_data)
+ao <- available_outcomes()
+ivw_rad <- ivw_radial(H_data)
+egger_rad <- egger_radial(H_data)
 
-#H_data <- subset(H_data, !(SNP %in% ivw_rad$outliers$SNP)) #(| SNP %in% egger_rad$outliers$SNP))
+#ivw
+H_data <- subset(H_data, !(SNP %in% ivw_rad$outliers$SNP))
+#ivw_egger
+H_data <- subset(H_data, !(SNP %in% ivw_rad$outliers$SNP | SNP %in% egger_rad$outliers$SNP))
 
 mr_func <- function(name, small_out_name, big_out_name){
   
@@ -317,16 +320,15 @@ mr_func <- function(name, small_out_name, big_out_name){
   }
 
 }
-#"IL2RA_sp", "MORF4L1_LCL", "SMAD3_subadi", "CTSH_wb", "CXCL12_pan", 
-# "IKZF4_LCL", "CTRB1_pan", "BAK1_pan", "BAK1_wb", "CTRB2_pan", 
-# "SH2B3_wb", "SUOX_pan", "SUOX_wb","HORMAD2_subadi", "PTPN22_wb", 
-# "TCP11_sp", "BACH2_pan", "PTPN22_pan", "SH2B3_pan", 
-# "IKZF4_pan", "CTSH_LCL", "MORF4L1_wb","CLEC16A_wb", "IL2RA_pan", 
-#"CTSH_pan", "IFIH1_pan", "SMAD3_sp",
-gene <- c("SH2B3_LCL", "MORF4L1_pan", "IFIH1_wb", "TCP11_LCL", 
+
+gene <- c("IL2RA_sp", "MORF4L1_LCL", "SMAD3_subadi", "CTSH_wb", "CXCL12_pan", 
+          "IKZF4_LCL", "CTRB1_pan", "BAK1_pan", "BAK1_wb", "CTRB2_pan", 
+          "SH2B3_wb", "SUOX_pan", "SUOX_wb","HORMAD2_subadi", "PTPN22_wb",
+          "TCP11_sp", "BACH2_pan", "PTPN22_pan", "SH2B3_pan",
+          "IKZF4_pan", "CTSH_LCL", "MORF4L1_wb","CLEC16A_wb", "IL2RA_pan",
+          "CTSH_pan", "IFIH1_pan", "SMAD3_sp","SH2B3_LCL", "MORF4L1_pan", "IFIH1_wb", "TCP11_LCL", 
           "IFIH1_increase_wb", "CFDP1_wb", "CFDP1_pan", "CFDP1_LCL", "CFDP1_increase_LCL", 
           "SMAD3_increase_sp", "BACH2_increase_pan", "SH2B3_increase_LCL")
-#  
 for (i in 1:length(gene)){
   mr_func(gene[i])
 }
