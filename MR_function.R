@@ -3,9 +3,6 @@ library(TwoSampleMR)
 library(dplyr)
 library(xlsx)
 
-#gwas_list <- c("ebi-a-GCST005195", "ebi-a-GCST90014023", "ebi-a-GCST90002407", "ebi-a-GCST90002379", "ebi-a-GCST90002381", "ebi-a-GCST90002316", "ebi-a-GCST90002340", "ebi-a-GCST90002398")
-#shorthand <- c("CAD", "T1D", "leu", "baso", "eos", "lym", "mono", "neu")
-
 mr_func <- function(abbrev_expo, abbrev_out, expo_code, out_code){
   
   require(MRInstruments)
