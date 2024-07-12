@@ -96,24 +96,22 @@ het_rem <- function(gene_name, out_name){
     break
   }
 }
-# do (TCP11 sp, SMAD3) CAD
-# 
+ 
 outcomes <- c("T1D", "CAD", "BASO", "EOS", "LEU", "NEU", "LYM", "MONO") 
-# "BAK1_wb", "CTSH_wb", "CXCL12_pan", "CTSH_LCL", "IL2RA_sp",
-#"CTRB1_pan", "CTRB2_pan", "IKZF4_LCL",    
+   
 genes <- c("CFDP1_wb", "CFDP1_pan", "CFDP1_LCL", "CFDP1_increase_LCL", "PTPN22_pan", "IL2RA_pan",
-           "IL2RA_pan",  "IFIH1_increase_wb", "SH2B3_increase_wb", "SH2B3_LCL", "SH2B3_increase_LCL", 
+           "IFIH1_increase_wb", "SH2B3_increase_wb", "SH2B3_LCL", "SH2B3_increase_LCL", 
            "SMAD3_subadi","MORF4L1_wb", "SH2B3_pan", "MORF4L1_pan", "IKZF4_pan", "SMAD3_sp","IKZF4_LCL", 
            "MORF4L1_LCL",  "TCP11_LCL", "BAK1_pan", "CLEC16A_wb", "IFIH1_pan", "HORMAD2_subadi",  
            "SUOX_pan", "BACH2_pan", "SH2B3_wb", "CTSH_pan","IFIH1_wb", "PTPN22_wb", 
            "TCP11_sp", "SUOX_wb", "SMAD3_increase_sp", "BACH2_increase_pan", "CFDP1_wb",
-           "CFDP1_pan", "CFDP1_LCL", "CFDP1_increase_LCL") #  , , , 
-           #, , ,, )
-# 
+           "CFDP1_pan", "CFDP1_LCL", "CFDP1_increase_LCL", "BAK1_wb", "CTSH_wb", "CXCL12_pan", 
+           "CTSH_LCL", "IL2RA_sp", "CTRB1_pan", "CTRB2_pan", "IKZF4_LCL", "TCP11 sp", "SMAD3")
+
 #main function implementation
 for (i in 1:length(genes)){
   for (j in 1:length(outcomes)){
     het_rem(genes[i], outcomes[j])
   }
 }
-#IL2RA sp T1D ivw_egger, CTRB1_pan LYM ivw
+
